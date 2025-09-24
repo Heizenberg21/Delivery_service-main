@@ -1,6 +1,7 @@
-# Посылка 142871231
+# Посылка 143008589
 def delivery_service(robot_weights: list, max_weight: int) -> int:
     """Служба доставки."""
+    robot_weights = sorted(robot_weights)
     left_pointer = 0
     right_pointer = len(robot_weights) - 1
     count_of_platforms = 0
@@ -13,6 +14,6 @@ def delivery_service(robot_weights: list, max_weight: int) -> int:
 
 
 if __name__ == '__main__':
-    robot_weights = sorted([int(weight) for weight in input().split()])
+    robot_weights = [int(weight) for weight in input().split()]
     max_weight = int(input())
     print(delivery_service(robot_weights, max_weight))
