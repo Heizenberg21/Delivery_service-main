@@ -1,19 +1,23 @@
-# Посылка 143008589
-def delivery_service(robot_weights: list, max_weight: int) -> int:
-    """Служба доставки."""
-    robot_weights = sorted(robot_weights)
-    left_pointer = 0
-    right_pointer = len(robot_weights) - 1
-    count_of_platforms = 0
-    while left_pointer <= right_pointer:
-        if robot_weights[right_pointer] + robot_weights[left_pointer] <= max_weight:
-            left_pointer += 1 
-        right_pointer -= 1
-        count_of_platforms += 1
-    return count_of_platforms
+def encrypted_instructions(encrypted_string: str) -> str:
+    '''Функция шифрованные инструкции.'''
+    # посылка 143142428
+    stack = []
+    current_num = ''
+    current_str = ''
+    for el in encrypted_string:
+        if el.isdigit():
+            current_num += el
+        elif el == '[':
+            stack.append((current_str, int(current_num) if current_num else 1))
+            current_str = ''
+            current_num = ''
+        elif el == ']':
+            prev_str, multiplier = stack.pop()
+            current_str = prev_str + current_str * multiplier
+        else:
+            current_str += el        
+    return current_str
 
-
-if __name__ == '__main__':
-    robot_weights = [int(weight) for weight in input().split()]
-    max_weight = int(input())
-    print(delivery_service(robot_weights, max_weight))
+#if __name__ == 'main':
+sipher_str = input()
+print(encrypted_instructions(sipher_str))
